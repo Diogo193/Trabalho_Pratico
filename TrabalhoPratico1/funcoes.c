@@ -1,3 +1,12 @@
+/**
+* 
+* @file Funcoes.c
+* @brief Implementação das funções para gerenciar uma lista de antenas.
+* 
+* Este arquivo contém a implementação das funções para criar, inserir, remover e imprimir antenas.
+* 
+*/
+
 #include "Dados.h"
 #include "Funcoes.h"
 #include <stdlib.h>

@@ -1,0 +1,30 @@
+\doxysection{Dados.\+h}
+\hypertarget{Dados_8h_source}{}\label{Dados_8h_source}\index{TrabalhoPratico1/Dados.h@{TrabalhoPratico1/Dados.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntenna}{Antenna}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{char}\ frequency;\ \textcolor{comment}{//\ Frequência\ da\ antena.}}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{int}\ x,\ y;\ \textcolor{comment}{//\ Coordenadas\ da\ antena.}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntenna}{Antenna}}*\ next;\ \textcolor{comment}{//\ Ponteiro\ para\ a\ próxima\ antena.}}
+\DoxyCodeLine{00012\ \}\ \mbox{\hyperlink{structAntenna}{Antenna}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntennas}{Antennas}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntenna}{Antenna}}*\ inicio;\ \textcolor{comment}{//\ Ponteiro\ para\ o\ início\ da\ lista\ de\ antenas.}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ totalAntennas;\ \textcolor{comment}{//\ Número\ total\ de\ antenas\ na\ lista.}}
+\DoxyCodeLine{00020\ \}\mbox{\hyperlink{structAntennas}{Antennas}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNefasto}{Nefasto}}\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{float}\ x,\ y;\ \textcolor{comment}{//\ Coordenadas\ do\ efeito\ nefasto.}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNefasto}{Nefasto}}*\ next;\ \textcolor{comment}{//\ Ponteiro\ para\ o\ próximo\ efeito\ nefasto.}}
+\DoxyCodeLine{00028\ \}\ \mbox{\hyperlink{structNefasto}{Nefasto}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNefastos}{Nefastos}}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNefasto}{Nefasto}}*\ inicio;\ \textcolor{comment}{//\ Ponteiro\ para\ o\ início\ da\ lista\ de\ efeitos\ nefastos.}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ totalHarmfulLocations;\ \textcolor{comment}{//\ Número\ total\ de\ efeitos\ nefastos\ na\ lista.}}
+\DoxyCodeLine{00036\ \};}
+
+\end{DoxyCode}

@@ -1,3 +1,10 @@
+/**
+* @file Dados.h
+* @brief Definição das estruturas de dados utilizadas no programa.
+* 
+* Este arquivo contém a definição das estruturas de dados utilizadas no programa.
+*
+*/
 #pragma once
 
 #include <stdbool.h>

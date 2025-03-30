@@ -1,0 +1,33 @@
+\doxysection{Funcoes.\+h}
+\hypertarget{Funcoes_8h_source}{}\label{Funcoes_8h_source}\index{TrabalhoPratico1/Funcoes.h@{TrabalhoPratico1/Funcoes.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}Dados.h"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#pragma\ region\ Antenas}}
+\DoxyCodeLine{00013\ \mbox{\hyperlink{structAntenna}{Antenna}}*\ CriaAntena(\textcolor{keywordtype}{char}\ freq,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00022\ \mbox{\hyperlink{structAntenna}{Antenna}}*\ insertAntenna(\mbox{\hyperlink{structAntenna}{Antenna}}*\ inicio,\ \mbox{\hyperlink{structAntenna}{Antenna}}*\ novo);\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00032\ \mbox{\hyperlink{structAntenna}{Antenna}}*\ removeAntenna(\mbox{\hyperlink{structAntenna}{Antenna}}*\ inicio,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ printAntennas(\mbox{\hyperlink{structAntenna}{Antenna}}*\ inicio,\ \mbox{\hyperlink{structNefasto}{Nefasto}}*\ nefastoInicio);\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ debugPrintAntennas(\mbox{\hyperlink{structAntenna}{Antenna}}*\ inicio);\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ guardarAntenas(\mbox{\hyperlink{structAntenna}{Antenna}}*\ inicio);}
+\DoxyCodeLine{00049\ \mbox{\hyperlink{structAntenna}{Antenna}}*\ LerAntenas();}
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ DestroiListaAntenas(\mbox{\hyperlink{structAntenna}{Antenna}}**\ inicio);}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#pragma\ endregion}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#pragma\ region\ Efeitos\ Nefastos}}
+\DoxyCodeLine{00054\ \mbox{\hyperlink{structNefasto}{Nefasto}}*\ CriaNefasto(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y);}
+\DoxyCodeLine{00055\ \mbox{\hyperlink{structNefasto}{Nefasto}}*\ insertNefasto(\mbox{\hyperlink{structNefasto}{Nefasto}}*\ inicio,\ \mbox{\hyperlink{structNefasto}{Nefasto}}*\ novo);}
+\DoxyCodeLine{00056\ \mbox{\hyperlink{structNefasto}{Nefasto}}*\ removeNefasto(\mbox{\hyperlink{structNefasto}{Nefasto}}*\ inicio,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ efeitoNefasto(\mbox{\hyperlink{structAntenna}{Antenna}}*\ inicio,\ \mbox{\hyperlink{structNefasto}{Nefasto}}**\ ini);}
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{void}\ DestroiLista(\mbox{\hyperlink{structNefasto}{Nefasto}}**\ ini);}
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{void}\ debugPrintNefasto(\mbox{\hyperlink{structNefasto}{Nefasto}}*\ inicio);}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#pragma\ endregion}}
+
+\end{DoxyCode}
