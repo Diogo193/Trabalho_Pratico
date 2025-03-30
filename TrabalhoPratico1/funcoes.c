@@ -111,7 +111,11 @@ void printAntennas(Antenna* inicio, Nefasto* nefastoInicio) {
     }
 }
 
-
+/**
+ * @brief Guarda as antenas no arquivo "antenas.txt".
+ *
+ * @param inicio O ponteiro para o início da lista de antenas.
+ */
 void guardarAntenas(Antenna* inicio) {
 	FILE* f = fopen("antenas.txt", "w");
 	if (f == NULL) {

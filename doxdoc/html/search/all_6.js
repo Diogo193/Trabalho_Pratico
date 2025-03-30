@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['lerantenas_0',['LerAntenas',['../funcoes_8c.html#a70f740e99d891a21e14099b604cf156a',1,'funcoes.c']]]
+  ['insertantenna_0',['insertAntenna',['../funcoes_8c.html#a9346c0e189667da723b44a7400d306dc',1,'funcoes.c']]],
+  ['insertnefasto_1',['insertNefasto',['../funcoes_8c.html#a8787aa5a82d871d70bdfd9db3243730a',1,'funcoes.c']]]
 ];

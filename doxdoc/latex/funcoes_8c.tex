@@ -11,8 +11,7 @@ Implementação das funções para gerenciar uma lista de antenas.
 {\ttfamily \#include $<$malloc.\+h$>$}\newline
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
-Include dependency graph for funcoes.\+c\+:
-\nopagebreak
+Include dependency graph for funcoes.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -36,9 +35,8 @@ Include dependency graph for funcoes.\+c\+:
 \begin{DoxyCompactList}\small\item\em Remove uma antena da lista de antenas com base nas coordenadas especificadas. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{funcoes_8c_a12c974ceab3a064d4324f3b14ec0ffcb}{print\+Antennas}} (\mbox{\hyperlink{structAntenna}{Antenna}} \texorpdfstring{$\ast$}{*}inicio, \mbox{\hyperlink{structNefasto}{Nefasto}} \texorpdfstring{$\ast$}{*}nefasto\+Inicio)
 \begin{DoxyCompactList}\small\item\em Imprime o grid com as antenas. \end{DoxyCompactList}\item 
-\Hypertarget{funcoes_8c_ab665f19a092b8e2616ad9be080647bff}\label{funcoes_8c_ab665f19a092b8e2616ad9be080647bff} 
-void {\bfseries guardar\+Antenas} (\mbox{\hyperlink{structAntenna}{Antenna}} \texorpdfstring{$\ast$}{*}inicio)
-\item 
+void \mbox{\hyperlink{funcoes_8c_ab665f19a092b8e2616ad9be080647bff}{guardar\+Antenas}} (\mbox{\hyperlink{structAntenna}{Antenna}} \texorpdfstring{$\ast$}{*}inicio)
+\begin{DoxyCompactList}\small\item\em Guarda as antenas no arquivo "{}antenas.\+txt"{}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structAntenna}{Antenna}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{funcoes_8c_a70f740e99d891a21e14099b604cf156a}{Ler\+Antenas}} ()
 \begin{DoxyCompactList}\small\item\em Lê as antenas de um arquivo e cria uma lista de antenas. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{funcoes_8c_a9ebdf2e407035af6a839dd6ed7cdb6b5}{debug\+Print\+Antennas}} (\mbox{\hyperlink{structAntenna}{Antenna}} \texorpdfstring{$\ast$}{*}inicio)
@@ -188,6 +186,21 @@ Esta função percorre a lista de antenas e verifica se há antenas com a mesma fre
 {\em inicio} & O ponteiro para o início da lista de antenas. \\
 \hline
 {\em ini} & O ponteiro para o ponteiro do início da lista de efeitos nefastos. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{funcoes_8c_ab665f19a092b8e2616ad9be080647bff}\label{funcoes_8c_ab665f19a092b8e2616ad9be080647bff} 
+\index{funcoes.c@{funcoes.c}!guardarAntenas@{guardarAntenas}}
+\index{guardarAntenas@{guardarAntenas}!funcoes.c@{funcoes.c}}
+\doxysubsubsection{\texorpdfstring{guardarAntenas()}{guardarAntenas()}}
+{\footnotesize\ttfamily void guardar\+Antenas (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntenna}{Antenna}} \texorpdfstring{$\ast$}{*}}]{inicio }\end{DoxyParamCaption})}
+
+
+
+Guarda as antenas no arquivo "{}antenas.\+txt"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inicio} & O ponteiro para o início da lista de antenas. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{funcoes_8c_a9346c0e189667da723b44a7400d306dc}\label{funcoes_8c_a9346c0e189667da723b44a7400d306dc} 

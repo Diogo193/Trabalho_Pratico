@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['printantennas_0',['printAntennas',['../funcoes_8c.html#a12c974ceab3a064d4324f3b14ec0ffcb',1,'funcoes.c']]]
+  ['nefasto_0',['nefasto',['../structNefasto.html',1,'Nefasto'],['../Dados_8h.html#ae690a2a29c460c7055653d2f38d277d4',1,'Nefasto:&#160;Dados.h']]],
+  ['nefastos_1',['Nefastos',['../structNefastos.html',1,'']]]
 ];
