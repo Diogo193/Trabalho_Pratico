@@ -17,7 +17,7 @@ typedef struct Antenna {
 typedef struct Antennas {
 	struct Antenna* inicio; // Ponteiro para o início da lista de antenas.
 	int totalAntennas; // Número total de antenas na lista.
-};
+}Antennas;
 
 /**
  * @brief Estrutura que representa um efeito nefasto.

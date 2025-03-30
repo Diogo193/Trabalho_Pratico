@@ -5,6 +5,9 @@
 #include <string.h>
 #include <stdio.h>
 
+#define GRID 20
+
+#pragma region Antenas
 /**
  * @brief Cria uma nova antena com a frequência e coordenadas especificadas.
  *
@@ -33,6 +36,7 @@ Antenna* CriaAntena(char freq, int x, int y) {
  * @return Antenna* O ponteiro para o início atualizado da lista de antenas.
  */
 Antenna* insertAntenna(Antenna* inicio, Antenna* novo) {;
+	
 	if (inicio == NULL) {
 		inicio = novo; //Se a lista estiver vazia, o início é a nova antena.
 	}
@@ -72,25 +76,82 @@ Antenna* removeAntenna(Antenna* inicio, int x, int y) {
  *
  * @param inicio O ponteiro para o início da lista de antenas.
  */
-void printAntennas(Antenna* inicio) {
+void printAntennas(Antenna* inicio, Nefasto* nefastoInicio) {
     printf("Grid\n");
-	for (int y = 0; y < 5; y++) { // Percorre as linhas do grid.
-		for (int x = 0; x < 5; x++) { // Percorre as colunas do grid.
-			Antenna* current = inicio; // Inicializa o ponteiro current com o início da lista.
-			char found = '.'; // Inicializa found com '.' (sem antena).
+    for (int y = 0; y < GRID; y++) { // Percorre as linhas do grid.
+        for (int x = 0; x < GRID; x++) { // Percorre as colunas do grid.
+            Antenna* current = inicio; // Inicializa o ponteiro current com o início da lista.
+            Nefasto* nefastoCurrent = nefastoInicio; // Inicializa o ponteiro nefastoCurrent com o início da lista de nefastos.
+            char found = '.'; // Inicializa found com '.' (sem antena).
             while (current != NULL) {
-				if (current->x == x && current->y == y) { // Verifica se a antena está na posição atual.
-					found = current->frequency; // Atualiza found com a frequência da antena.
+                if (current->x == x && current->y == y) { // Verifica se a antena está na posição atual.
+                    found = current->frequency; // Atualiza found com a frequência da antena.
                     break;
                 }
-				current = current->next; // Avança para a próxima antena.
+                current = current->next; // Avança para a próxima antena.
             }
-			printf("%c", found); // Imprime o caractere encontrado.
+            while (nefastoCurrent != NULL) {
+                if ((int)nefastoCurrent->x == x && (int)nefastoCurrent->y == y) { // Verifica se o nefasto está na posição atual.
+                    found = '#'; // Atualiza found com '#' para indicar a presença de um nefasto.
+                    break;
+                }
+                nefastoCurrent = nefastoCurrent->next; // Avança para o próximo nefasto.
+            }
+            printf("%c", found); // Imprime o caractere encontrado.
         }
-		printf("\n"); // Pula para a próxima linha.
+        printf("\n"); // Pula para a próxima linha.
     }
 }
 
+
+void guardarAntenas(Antenna* inicio) {
+	FILE* f = fopen("antenas.txt", "w");
+	if (f == NULL) {
+		fprintf(stderr, "Erro ao abrir o arquivo para escrita.\n");
+		return;
+	}
+	for (int y = 0; y < GRID; y++) { // Percorre as linhas do grid.
+		for (int x = 0; x < GRID; x++) { // Percorre as colunas do grid.
+			Antenna* current = inicio; // Inicializa o ponteiro current com o início da lista.
+			char found = '.'; // Inicializa found com '.' (sem antena).
+			while (current != NULL) {
+				if (current->x == x && current->y == y) { // Verifica se a antena está na posição atual.
+					found = current->frequency; // Atualiza found com a frequência da antena.
+					break;
+				}
+				current = current->next; // Avança para a próxima antena.
+			}
+			fprintf(f, "%c", found); // Escreve o caractere encontrado no arquivo.
+		}
+		fprintf(f, "\n"); // Pula para a próxima linha no arquivo.
+	}
+	fclose(f); // Fecha o arquivo após a escrita.
+}
+
+Antenna* LerAntenas() {
+	FILE* f = fopen("antenas.txt", "r");
+	if (f == NULL) {
+		fprintf(stderr, "Erro ao abrir o arquivo para leitura.\n");
+		return NULL;
+	}
+
+	Antenna* inicio = NULL;
+	char linha[GRID + 2]; // +2 para o caractere nulo e o '\n'
+	int y = 0;
+
+	while (fgets(linha, sizeof(linha), f) != NULL && y < GRID) {
+		for (int x = 0; x < GRID; x++) {
+			if (linha[x] != '.' && linha[x] != '\n') {
+				Antenna* novaAntena = CriaAntena(linha[x], x, y);
+				inicio = insertAntenna(inicio, novaAntena);
+			}
+		}
+		y++;
+	}
+
+	fclose(f);
+	return inicio;
+}
 /**
  * @brief Imprime as antenas.
  *
@@ -104,6 +165,19 @@ void debugPrintAntennas(Antenna* inicio) {
     }
 }
 
+void DestroiListaAntenas(Antenna** inicio) {
+	if (inicio != NULL) {
+		Antenna* aux;
+		while (*inicio) {
+			aux = *inicio;
+			*inicio = (*inicio)->next;
+			free(aux);
+		}
+	}
+}
+#pragma endregion
+
+#pragma region Efeitos Nefastos
 Nefasto* CriaNefasto(float x, float y) {
 	Nefasto* aux;
 	aux = (Nefasto*)malloc(sizeof(Nefasto)); //Aloca memória para o novo efeito nefasto.
@@ -162,43 +236,49 @@ Nefasto* removeNefasto(Nefasto* inicio, int x, int y) {
 }
 
 void efeitoNefasto(Antenna* inicio, Nefasto** ini) {
-	Nefasto* aux;
-	Antenna* current = inicio;
+    Nefasto* aux;
+    Antenna* current = inicio;
+    Antenna* compare;
 
-	while (current != NULL && current->next != NULL) {
-		if ((current->x == current->next->x) && (current->y != current->next->y)) {
-			int subtracao = current->y - current->next->y;
-			float nefy = current->y + subtracao;
-			float nefy1 = current->next->y - subtracao;
-			aux = CriaNefasto(current->x, nefy);
-			*ini = insertNefasto(*ini, aux);
-			aux = CriaNefasto(current->next->x, nefy1);
-			*ini = insertNefasto(*ini, aux);
-		}
-		else if ((current->x != current->next->x) && (current->y == current->next->y)) {
-			int subtracao = current->x - current->next->x;
-			float nefx = current->x + subtracao;
-			float nefx1 = current->next->x - subtracao;
-			aux = CriaNefasto(nefx, current->y);
-			*ini = insertNefasto(*ini, aux);
-			aux = CriaNefasto(nefx1, current->next->y);
-			*ini = insertNefasto(*ini, aux);
-		}
-		else if ((current->x != current->next->x) && (current->y != current->next->y)) {
-			int subtracaox = current->x - current->next->x;
-			int subtracaoy = current->y - current->next->y;
-			float nefx = current->x + subtracaox;
-			float nefx1 = current->next->x - subtracaox;
-			float nefy = current->y + subtracaoy;
-			float nefy1 = current->next->y - subtracaoy;
-			aux = CriaNefasto(nefx, nefy);
-			*ini = insertNefasto(*ini, aux);
-			aux = CriaNefasto(nefx1, nefy1);
-			*ini = insertNefasto(*ini, aux);
+    while (current != NULL) {
+		compare = current->next;
+		while (compare != NULL) {
+			if (current->frequency == compare->frequency) {
+				if ((current->x == compare->x) && (current->y != compare->y)) {
+						int subtracao = current->y - compare->y;
+						float nefy = current->y + subtracao;
+						float nefy1 = compare->y - subtracao;
+						aux = CriaNefasto(current->x, nefy);
+						*ini = insertNefasto(*ini, aux);
+						aux = CriaNefasto(compare->x, nefy1);
+						*ini = insertNefasto(*ini, aux);
+				}
+				else if ((current->x != compare->x) && (current->y == compare->y)) {
+						int subtracao = current->x - compare->x;
+						float nefx = current->x + subtracao;
+						float nefx1 = compare->x - subtracao;
+						aux = CriaNefasto(nefx, current->y);
+						*ini = insertNefasto(*ini, aux);
+						aux = CriaNefasto(nefx1, compare->y);
+						*ini = insertNefasto(*ini, aux);
+				}
+				else if ((current->x != compare->x) && (current->y != compare->y)) {
+						int subtracaox = current->x - compare->x;
+						int subtracaoy = current->y - compare->y;
+						float nefx = current->x + subtracaox;
+						float nefx1 = compare->x - subtracaox;
+						float nefy = current->y + subtracaoy;
+						float nefy1 = compare->y - subtracaoy;
+						aux = CriaNefasto(nefx, nefy);
+						*ini = insertNefasto(*ini, aux);
+						aux = CriaNefasto(nefx1, nefy1);
+						*ini = insertNefasto(*ini, aux);
+				}
+			}
+			compare = compare->next;
 		}
 		current = current->next;
-	}
-	return *ini;
+    }
 }
 
 void DestroiLista(Nefasto** ini) {
@@ -221,3 +301,5 @@ void debugPrintNefasto(Nefasto* inicio) {
 		current = current->next; // Avança para o próximo efeito nefasto.
 	}
 }
+
+#pragma endregion

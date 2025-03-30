@@ -1,7 +1,7 @@
 #include "Dados.h"
 
-#pragma once
 
+#pragma region Antenas
 /**
  * @brief Cria uma nova antena com a frequência e coordenadas especificadas.
  *
@@ -36,7 +36,7 @@ Antenna* removeAntenna(Antenna* inicio, int x, int y);
  *
  * @param inicio O ponteiro para o início da lista de antenas.
  */
-void printAntennas(Antenna* inicio); 
+void printAntennas(Antenna* inicio, Nefasto* nefastoInicio); 
 
 /**
  * @brief Imprime as antenas para fins de depuração.
@@ -45,9 +45,16 @@ void printAntennas(Antenna* inicio);
  */
 void debugPrintAntennas(Antenna* inicio); 
 
+void guardarAntenas(Antenna* inicio);
+Antenna* LerAntenas();
+void DestroiListaAntenas(Antenna** inicio);
+#pragma endregion
+
+#pragma region Efeitos Nefastos
 Nefasto* CriaNefasto(float x, float y);
 Nefasto* insertNefasto(Nefasto* inicio, Nefasto* novo);
 Nefasto* removeNefasto(Nefasto* inicio, int x, int y);
 void efeitoNefasto(Antenna* inicio, Nefasto** ini);
 void DestroiLista(Nefasto** ini);
 void debugPrintNefasto(Nefasto* inicio);
+#pragma endregion
