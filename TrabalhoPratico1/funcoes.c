@@ -128,30 +128,44 @@ void guardarAntenas(Antenna* inicio) {
 	fclose(f); // Fecha o arquivo após a escrita.
 }
 
+/**
+ * @brief Lê as antenas de um arquivo e cria uma lista de antenas.
+ *
+ * Esta função abre um arquivo chamado "antenas.txt" para leitura e lê as antenas
+ * armazenadas no arquivo. Para cada antena encontrada, cria uma nova antena com
+ * a frequência e coordenadas especificadas e insere essa antena na lista de antenas.
+ *
+ * @return Antenna* O ponteiro para o início da lista de antenas.
+ */
 Antenna* LerAntenas() {
-	FILE* f = fopen("antenas.txt", "r");
-	if (f == NULL) {
-		fprintf(stderr, "Erro ao abrir o arquivo para leitura.\n");
-		return NULL;
-	}
+    FILE* f = fopen("antenas.txt", "r"); // Abre o arquivo "antenas.txt" para leitura.
+    if (f == NULL) {
+        fprintf(stderr, "Erro ao abrir o arquivo para leitura.\n"); // Imprime uma mensagem de erro se o arquivo não puder ser aberto.
+        return NULL; // Retorna NULL se o arquivo não puder ser aberto.
+    }
 
-	Antenna* inicio = NULL;
-	char linha[GRID + 2]; // +2 para o caractere nulo e o '\n'
-	int y = 0;
+    Antenna* inicio = NULL; // Inicializa o ponteiro para o início da lista de antenas como NULL.
+    char linha[GRID + 2]; // Buffer para armazenar cada linha lida do arquivo (+2 para o caractere nulo e o '\n').
+    int y = 0; // Inicializa a coordenada y.
 
-	while (fgets(linha, sizeof(linha), f) != NULL && y < GRID) {
-		for (int x = 0; x < GRID; x++) {
-			if (linha[x] != '.' && linha[x] != '\n') {
-				Antenna* novaAntena = CriaAntena(linha[x], x, y);
-				inicio = insertAntenna(inicio, novaAntena);
-			}
-		}
-		y++;
-	}
+    while (fgets(linha, sizeof(linha), f) != NULL && y < GRID) {
+		// Lê cada linha do arquivo até o final ou até atingir o tamanho do grid.
+        for (int x = 0; x < GRID; x++) {
+			// Percorre cada caractere da linha.
+            if (linha[x] != '.' && linha[x] != '\n') {
+				// Verifica se o caractere não é um ponto (.) ou uma nova linha (\n).
+                Antenna* novaAntena = CriaAntena(linha[x], x, y); // Cria uma nova antena com a frequência e coordenadas especificadas.
+                inicio = insertAntenna(inicio, novaAntena); // Insere a nova antena na lista de antenas.
+            }
+        }
+        y++; // Incrementa a coordenada y.
+    }
 
-	fclose(f);
-	return inicio;
+    fclose(f); // Fecha o arquivo após a leitura.
+    return inicio; // Retorna o ponteiro para o início da lista de antenas.
 }
+
+
 /**
  * @brief Imprime as antenas.
  *
@@ -165,6 +179,11 @@ void debugPrintAntennas(Antenna* inicio) {
     }
 }
 
+/**
+ * @brief Destroi a lista de antenas.
+ *
+ * @param inicio O ponteiro para o início da lista de antenas.
+ */
 void DestroiListaAntenas(Antenna** inicio) {
 	if (inicio != NULL) {
 		Antenna* aux;
@@ -178,6 +197,13 @@ void DestroiListaAntenas(Antenna** inicio) {
 #pragma endregion
 
 #pragma region Efeitos Nefastos
+/**
+ * @brief Cria um novo efeito nefasto com as coordenadas especificadas.
+ *
+ * @param x A coordenada x do efeito nefasto.
+ * @param y A coordenada y do efeito nefasto.
+ * @return Nefasto* O ponteiro para o novo efeito nefasto criado.
+ */
 Nefasto* CriaNefasto(float x, float y) {
 	Nefasto* aux;
 	aux = (Nefasto*)malloc(sizeof(Nefasto)); //Aloca memória para o novo efeito nefasto.
@@ -212,94 +238,98 @@ Nefasto* insertNefasto(Nefasto* inicio, Nefasto* novo) {
 	}
 	return inicio; // Retorna o ponteiro para o início da lista de efeitos nefastos.
 }
-/**
- * @brief Remove um efeito nefasto da lista de efeitos nefastos com base nas coordenadas especificadas.
- *
- * @param inicio O ponteiro para o início da lista de efeitos nefastos.
- * @param x A coordenada x do efeito nefasto a ser removido.
- * @param y A coordenada y do efeito nefasto a ser removido.
- * @return Nefasto* O ponteiro para o início atualizado da lista de efeitos nefastos.
- */
-Nefasto* removeNefasto(Nefasto* inicio, int x, int y) {
-	Nefasto* current = inicio, * prev = NULL;
-	while (current != NULL) {
-		if (current->x == x && current->y == y) { // Encontra o efeito nefasto com as coordenadas especificadas.
-			if (prev == NULL) inicio = current->next; // Se for o primeiro efeito nefasto, atualiza o início.
-			else prev->next = current->next; // Caso contrário, ajusta o ponteiro next do efeito nefasto anterior.
-			free(current); // Libera a memória alocada para o efeito nefasto que se quer remover.
-			return inicio; // Retorna o ponteiro para o início da lista de efeitos nefastos.
-		}
-		prev = current; // Atualiza o ponteiro prev.
-		current = current->next; // Avança para o próximo efeito nefasto.
-	}
-	return inicio; // Retorna o ponteiro para o início da lista (não modificado se o efeito nefasto não foi encontrado)
-}
 
+
+/**
+ * @brief Aplica os efeitos nefastos entre antenas com a mesma frequência.
+ *
+ * Esta função percorre a lista de antenas e verifica se há antenas com a mesma frequência.
+ * Se encontrar antenas com a mesma frequência, calcula as coordenadas dos efeitos nefastos
+ * e insere esses efeitos na lista de nefastos.
+ *
+ * @param inicio O ponteiro para o início da lista de antenas.
+ * @param ini O ponteiro para o ponteiro do início da lista de efeitos nefastos.
+ */
 void efeitoNefasto(Antenna* inicio, Nefasto** ini) {
     Nefasto* aux;
     Antenna* current = inicio;
     Antenna* compare;
 
     while (current != NULL) {
-		compare = current->next;
-		while (compare != NULL) {
-			if (current->frequency == compare->frequency) {
-				if ((current->x == compare->x) && (current->y != compare->y)) {
-						int subtracao = current->y - compare->y;
-						float nefy = current->y + subtracao;
-						float nefy1 = compare->y - subtracao;
-						aux = CriaNefasto(current->x, nefy);
-						*ini = insertNefasto(*ini, aux);
-						aux = CriaNefasto(compare->x, nefy1);
-						*ini = insertNefasto(*ini, aux);
-				}
-				else if ((current->x != compare->x) && (current->y == compare->y)) {
-						int subtracao = current->x - compare->x;
-						float nefx = current->x + subtracao;
-						float nefx1 = compare->x - subtracao;
-						aux = CriaNefasto(nefx, current->y);
-						*ini = insertNefasto(*ini, aux);
-						aux = CriaNefasto(nefx1, compare->y);
-						*ini = insertNefasto(*ini, aux);
-				}
-				else if ((current->x != compare->x) && (current->y != compare->y)) {
-						int subtracaox = current->x - compare->x;
-						int subtracaoy = current->y - compare->y;
-						float nefx = current->x + subtracaox;
-						float nefx1 = compare->x - subtracaox;
-						float nefy = current->y + subtracaoy;
-						float nefy1 = compare->y - subtracaoy;
-						aux = CriaNefasto(nefx, nefy);
-						*ini = insertNefasto(*ini, aux);
-						aux = CriaNefasto(nefx1, nefy1);
-						*ini = insertNefasto(*ini, aux);
-				}
-			}
-			compare = compare->next;
-		}
-		current = current->next;
+        compare = current->next;
+        while (compare != NULL) {
+            if (current->frequency == compare->frequency) {
+                if ((current->x == compare->x) && (current->y != compare->y)) {
+                    // Antenas na mesma coluna, mas em linhas diferentes
+					int subtracao = current->y - compare->y; // Calcula a diferença entre as coordenadas y.
+					float nefy = current->y + subtracao; // Calcula a coordenada y do efeito nefasto.
+					float nefy1 = compare->y - subtracao; // Calcula a coordenada y do efeito nefasto.
+					aux = CriaNefasto(current->x, nefy); // Cria o efeito nefasto.
+					*ini = insertNefasto(*ini, aux); // Insere o efeito nefasto na lista.
+					aux = CriaNefasto(compare->x, nefy1); // Cria o efeito nefasto.
+					*ini = insertNefasto(*ini, aux); // Insere o efeito nefasto na lista.
+                }
+                else if ((current->x != compare->x) && (current->y == compare->y)) {
+                    // Antenas na mesma linha, mas em colunas diferentes
+					int subtracao = current->x - compare->x; // Calcula a diferença entre as coordenadas x.
+					float nefx = current->x + subtracao; // Calcula a coordenada x do efeito nefasto.
+					float nefx1 = compare->x - subtracao; // Calcula a coordenada x do efeito nefasto.
+					aux = CriaNefasto(nefx, current->y); // Cria o efeito nefasto.
+					*ini = insertNefasto(*ini, aux); // Insere o efeito nefasto na lista.
+					aux = CriaNefasto(nefx1, compare->y); // Cria o efeito nefasto.
+					*ini = insertNefasto(*ini, aux); // Insere o efeito nefasto na lista.
+                }
+                else if ((current->x != compare->x) && (current->y != compare->y)) {
+                    // Antenas em posições diferentes
+					int subtracaox = current->x - compare->x; // Calcula a diferença entre as coordenadas x.
+					int subtracaoy = current->y - compare->y; // Calcula a diferença entre as coordenadas y.
+					float nefx = current->x + subtracaox; // Calcula a coordenada x do efeito nefasto.
+					float nefx1 = compare->x - subtracaox; // Calcula a coordenada x do efeito nefasto.
+					float nefy = current->y + subtracaoy; // Calcula a coordenada y do efeito nefasto.
+					float nefy1 = compare->y - subtracaoy; // Calcula a coordenada y do efeito nefasto.
+					aux = CriaNefasto(nefx, nefy); // Cria o efeito nefasto.
+					*ini = insertNefasto(*ini, aux); // Insere o efeito nefasto na lista.
+					aux = CriaNefasto(nefx1, nefy1); // Cria o efeito nefasto.
+					*ini = insertNefasto(*ini, aux); // Insere o efeito nefasto na lista.
+                }
+            }
+			compare = compare->next; // Avança para a próxima antena.
+        }
+		current = current->next; // Avança para a próxima antena.
     }
 }
 
+/**
+ * @brief Destroi a lista de efeitos nefastos.
+ *
+ * Esta função percorre a lista de efeitos nefastos e libera a memória alocada para cada efeito.
+ *
+ * @param ini O ponteiro para o ponteiro do início da lista de efeitos nefastos.
+ */
 void DestroiLista(Nefasto** ini) {
-	if (ini != NULL) {
-		Nefasto* aux;
-		while (*ini) {
-			aux = *ini;
-			*ini = (*ini)->next;
-			free(aux);
-		}
-	}
-	return ini;
+    if (ini != NULL) {
+        Nefasto* aux; 
+        while (*ini) {
+            aux = *ini; 
+            *ini = (*ini)->next; 
+            free(aux);
+        }
+    }
 }
 
-
+/**
+ * @brief Imprime os efeitos nefastos.
+ *
+ * Esta função percorre a lista de efeitos nefastos e imprime as coordenadas de cada efeito.
+ *
+ * @param inicio O ponteiro para o início da lista de efeitos nefastos.
+ */
 void debugPrintNefasto(Nefasto* inicio) {
-	Nefasto* current = inicio;
-	while (current != NULL) {
-		printf("Nefasto: x=%.2f, y=%.2f\n", current->x, current->y); // Imprime os dados do efeito nefasto.
-		current = current->next; // Avança para o próximo efeito nefasto.
-	}
+    Nefasto* current = inicio;
+    while (current != NULL) {
+        printf("Nefasto: x=%.2f, y=%.2f\n", current->x, current->y); // Imprime os dados do efeito nefasto.
+        current = current->next; // Avança para o próximo efeito nefasto.
+    }
 }
 
 #pragma endregion

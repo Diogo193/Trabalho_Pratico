@@ -20,9 +20,10 @@ int main() {
     int x, y; // Coordenadas da antena.
     Antenna* inicio = NULL; // Ponteiro para o início da lista de antenas.
     Antenna* aux; // Ponteiro auxiliar para a nova antena.
-    Nefasto* ini1 = NULL;
+    Nefasto* ini1 = NULL; // Ponteiro para o início da lista de efeitos nefastos.
 
     while (opcao != 0) {
+        // Exibe o menu de opções
         printf("1 - Inserir Antena\n");
         printf("2 - Remover Antena\n");
         printf("3 - Mostrar grid\n");
@@ -31,9 +32,10 @@ int main() {
         scanf("%d", &opcao);
         switch (opcao) {
         case 1:
+            // Inserir uma nova antena
             inicio = LerAntenas();
             printf("Frequência:\n");
-            while (getchar() != '\n'); //Limpa o buffer de entrada.
+            while (getchar() != '\n'); // Limpa o buffer de entrada.
             if (scanf("%c", &freq) != 1) {
                 while (getchar() != '\n');
                 continue;
@@ -48,14 +50,14 @@ int main() {
                 while (getchar() != '\n');
                 continue;
             }
-            aux = CriaAntena(freq, x, y);
+            aux = CriaAntena(freq, x, y); // Cria uma nova antena
             inicio = insertAntenna(inicio, aux); // Atualiza o ponteiro inicio.
             debugPrintAntennas(inicio); // Mostra a lista de antenas.
-            guardarAntenas(inicio);
+            guardarAntenas(inicio); // Guarda a lista de antenas no arquivo.
             break;
         case 2:
+            // Remover uma antena existente
             inicio = LerAntenas();
-
             printf("Coordenada x:\n");
             if (scanf("%d", &x) != 1) {
                 while (getchar() != '\n');
@@ -68,16 +70,17 @@ int main() {
             }
             inicio = removeAntenna(inicio, x, y); // Atualiza o ponteiro inicio.
             debugPrintAntennas(inicio); // Mostra a lista de antenas.
-            guardarAntenas(inicio);
+            guardarAntenas(inicio); // Guarda a lista de antenas no arquivo.
             break;
         case 3:
-            // Carregar antenas do arquivo
-            inicio = LerAntenas();
-            DestroiLista(&ini1);
-            efeitoNefasto(inicio, &ini1);
-            printAntennas(inicio, ini1);
+            // Mostrar a grade de antenas
+            inicio = LerAntenas(); // Carregar antenas do arquivo
+            DestroiLista(&ini1); // Limpa a lista de efeitos nefastos
+            efeitoNefasto(inicio, &ini1); // Aplica efeitos nefastos
+            printAntennas(inicio, ini1); // Mostra a lista de antenas e efeitos nefastos
             break;
         default:
+            // Opção inválida
             printf("Opção inválida!\n");
             break;
         }
