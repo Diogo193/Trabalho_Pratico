@@ -1,6 +1,6 @@
 <map id="TrabalhoPratico1/main.c" name="TrabalhoPratico1/main.c">
 <area shape="rect" id="Node000001" title="Programa principal para gerenciar uma lista de antenas." alt="" coords="41,5,220,31"/>
-<area shape="rect" id="Node000002" href="$Dados_8h_source.html" title=" " alt="" coords="47,152,121,177"/>
+<area shape="rect" id="Node000002" href="$Dados_8h.html" title="Definição das estruturas de dados utilizadas no programa." alt="" coords="47,152,121,177"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,32,102,53,88,80,82,110,83,139,78,139,77,109,83,78,98,50,116,29"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,225,88,251"/>
 <area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="119,33,75,81,52,115,37,153,35,183,41,211,35,212,30,183,32,151,48,113,70,78,116,29"/>

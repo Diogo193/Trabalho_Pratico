@@ -1,0 +1,18 @@
+<map id="TrabalhoPratico1/funcoes.c" name="TrabalhoPratico1/funcoes.c">
+<area shape="rect" id="Node000001" title="Implementação das funções para gerenciar uma lista de antenas." alt="" coords="142,5,338,31"/>
+<area shape="rect" id="Node000002" href="$Dados_8h.html" title="Definição das estruturas de dados utilizadas no programa." alt="" coords="9,152,84,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,33,86,53,54,66,34,80,28,94,27,109,36,139,31,140,22,109,23,92,30,77,51,61,85,48,166,28"/>
+<area shape="rect" id="Node000004" href="$Funcoes_8h_source.html" title=" " alt="" coords="45,79,131,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="217,33,126,75,124,70,214,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="155,79,226,104"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="234,33,209,69,204,66,230,29"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="250,79,329,104"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="250,29,276,66,271,69,246,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="353,79,423,104"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="265,28,353,70,350,75,263,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="448,79,515,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="280,28,435,74,434,79,278,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,225,88,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="49,178,49,212,44,212,44,178"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="83,106,63,141,58,139,79,103"/>
+</map>

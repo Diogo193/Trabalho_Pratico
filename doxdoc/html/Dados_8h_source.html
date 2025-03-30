@@ -81,42 +81,49 @@ $(document).ready(function() { init_codefold(0); });
   <div class="headertitle"><div class="title">Dados.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="structAntenna.html">    8</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structAntenna.html">Antenna</a> {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordtype">char</span> frequency; <span class="comment">// Frequência da antena.</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keywordtype">int</span> x, y; <span class="comment">// Coordenadas da antena.</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structAntenna.html">Antenna</a>* next; <span class="comment">// Ponteiro para a próxima antena.</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>} <a class="code hl_struct" href="structAntenna.html">Antenna</a>;</div>
-</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structAntennas.html">   17</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structAntennas.html">Antennas</a> {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structAntenna.html">Antenna</a>* inicio; <span class="comment">// Ponteiro para o início da lista de antenas.</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">int</span> totalAntennas; <span class="comment">// Número total de antenas na lista.</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}<a class="code hl_struct" href="structAntennas.html">Antennas</a>;</div>
+<a href="Dados_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#pragma region Antenas</span></div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structAntenna.html">   16</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structAntenna.html">Antenna</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">char</span> frequency; <span class="comment">// Frequência da antena.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">int</span> x, y; <span class="comment">// Coordenadas da antena.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structAntenna.html">Antenna</a>* next; <span class="comment">// Ponteiro para a próxima antena.</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="Dados_8h.html#a0a267c678246535a4c8d392e3af5695b">   20</a></span>} <a class="code hl_struct" href="structAntenna.html">Antenna</a>;</div>
 </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structNefasto.html">   25</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structNefasto.html">Nefasto</a> {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">float</span> x, y; <span class="comment">// Coordenadas do efeito nefasto.</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structNefasto.html">Nefasto</a>* next; <span class="comment">// Ponteiro para o próximo efeito nefasto.</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>} <a class="code hl_struct" href="structNefasto.html">Nefasto</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structAntennas.html">   25</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structAntennas.html">Antennas</a> {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structAntenna.html">Antenna</a>* inicio; <span class="comment">// Ponteiro para o início da lista de antenas.</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">int</span> totalAntennas; <span class="comment">// Número total de antenas na lista.</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="Dados_8h.html#a750c8fc1bac7a74a3ba79df7f1f6c2cd">   28</a></span>}<a class="code hl_struct" href="structAntennas.html">Antennas</a>;</div>
 </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structNefastos.html">   33</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structNefastos.html">Nefastos</a> {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structNefasto.html">Nefasto</a>* inicio; <span class="comment">// Ponteiro para o início da lista de efeitos nefastos.</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">int</span> totalHarmfulLocations; <span class="comment">// Número total de efeitos nefastos na lista.</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#pragma endregion</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#pragma region Efeitos Nefastos</span></div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structNefasto.html">   36</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structNefasto.html">Nefasto</a> {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">float</span> x, y; <span class="comment">// Coordenadas do efeito nefasto.</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structNefasto.html">Nefasto</a>* next; <span class="comment">// Ponteiro para o próximo efeito nefasto.</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="Dados_8h.html#ae690a2a29c460c7055653d2f38d277d4">   39</a></span>} <a class="code hl_struct" href="structNefasto.html">Nefasto</a>;</div>
 </div>
-<div class="ttc" id="astructAntenna_html"><div class="ttname"><a href="structAntenna.html">Antenna</a></div><div class="ttdoc">Estrutura que representa uma antena.</div><div class="ttdef"><b>Definition</b> Dados.h:8</div></div>
-<div class="ttc" id="astructAntennas_html"><div class="ttname"><a href="structAntennas.html">Antennas</a></div><div class="ttdoc">Estrutura que representa uma lista de antenas.</div><div class="ttdef"><b>Definition</b> Dados.h:17</div></div>
-<div class="ttc" id="astructNefasto_html"><div class="ttname"><a href="structNefasto.html">Nefasto</a></div><div class="ttdoc">Estrutura que representa um efeito nefasto.</div><div class="ttdef"><b>Definition</b> Dados.h:25</div></div>
-<div class="ttc" id="astructNefastos_html"><div class="ttname"><a href="structNefastos.html">Nefastos</a></div><div class="ttdoc">Estrutura que representa uma lista de efeitos nefastos.</div><div class="ttdef"><b>Definition</b> Dados.h:33</div></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structNefastos.html">   44</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structNefastos.html">Nefastos</a> {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">struct </span><a class="code hl_struct" href="structNefasto.html">Nefasto</a>* inicio; <span class="comment">// Ponteiro para o início da lista de efeitos nefastos.</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">int</span> totalHarmfulLocations; <span class="comment">// Número total de efeitos nefastos na lista.</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
+</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#pragma endregion</span></div>
+<div class="ttc" id="astructAntenna_html"><div class="ttname"><a href="structAntenna.html">Antenna</a></div><div class="ttdoc">Estrutura que representa uma antena.</div><div class="ttdef"><b>Definition</b> Dados.h:16</div></div>
+<div class="ttc" id="astructAntennas_html"><div class="ttname"><a href="structAntennas.html">Antennas</a></div><div class="ttdoc">Estrutura que representa uma lista de antenas.</div><div class="ttdef"><b>Definition</b> Dados.h:25</div></div>
+<div class="ttc" id="astructNefasto_html"><div class="ttname"><a href="structNefasto.html">Nefasto</a></div><div class="ttdoc">Estrutura que representa um efeito nefasto.</div><div class="ttdef"><b>Definition</b> Dados.h:36</div></div>
+<div class="ttc" id="astructNefastos_html"><div class="ttname"><a href="structNefastos.html">Nefastos</a></div><div class="ttdoc">Estrutura que representa uma lista de efeitos nefastos.</div><div class="ttdef"><b>Definition</b> Dados.h:44</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

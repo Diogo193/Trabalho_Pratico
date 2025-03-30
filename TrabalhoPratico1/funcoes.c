@@ -1,6 +1,5 @@
 /**
-* 
-* @file Funcoes.c
+* @file funcoes.c
 * @brief Implementação das funções para gerenciar uma lista de antenas.
 * 
 * Este arquivo contém a implementação das funções para criar, inserir, remover e imprimir antenas.
@@ -14,7 +13,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#define GRID 20
+#define GRID 20 // Tamanho do grid.
 
 #pragma region Antenas
 /**

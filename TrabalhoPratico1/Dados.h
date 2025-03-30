@@ -9,6 +9,7 @@
 
 #include <stdbool.h>
 
+#pragma region Antenas
 /**
  * @brief Estrutura que representa uma antena.
  */
@@ -26,6 +27,9 @@ typedef struct Antennas {
 	int totalAntennas; // Número total de antenas na lista.
 }Antennas;
 
+#pragma endregion
+
+#pragma region Efeitos Nefastos
 /**
  * @brief Estrutura que representa um efeito nefasto.
  */
@@ -41,3 +45,5 @@ typedef struct Nefastos {
 	struct Nefasto* inicio; // Ponteiro para o início da lista de efeitos nefastos.
 	int totalHarmfulLocations; // Número total de efeitos nefastos na lista.
 };
+
+#pragma endregion
