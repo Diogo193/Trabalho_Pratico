@@ -2,7 +2,7 @@
 
 Licenciatura em Engenharia de Sistemas Informáticos 2024-25
 
-Laboratórios de Informática 
+Estrutura de Dados Avançada
 
 Desenvolvedor: Diogo Malheiro Rocha nº 29339
 
