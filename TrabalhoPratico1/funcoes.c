@@ -43,8 +43,8 @@ Antenna* CriaAntena(char freq, int x, int y) {
  * @param novo O ponteiro para a nova antena a ser inserida.
  * @return Antenna* O ponteiro para o início atualizado da lista de antenas.
  */
-Antenna* insertAntenna(Antenna* inicio, Antenna* novo) {;
-	
+Antenna* insertAntenna(Antenna* inicio, Antenna* novo, bool *res) {;
+*res = false;
 	if (inicio == NULL) {
 		inicio = novo; //Se a lista estiver vazia, o início é a nova antena.
 	}
@@ -52,6 +52,7 @@ Antenna* insertAntenna(Antenna* inicio, Antenna* novo) {;
 		novo->next = inicio; // A nova antena aponta para o início da lista.
 		inicio = novo; // O início da lista é atualizado para a nova antena.
 	}
+	*res = true;
 	return inicio; //Retorna o ponteiro para o início da lista de antenas.
 
 }
@@ -262,7 +263,7 @@ Nefasto* insertNefasto(Nefasto* inicio, Nefasto* novo) {
  * @param inicio O ponteiro para o início da lista de antenas.
  * @param ini O ponteiro para o ponteiro do início da lista de efeitos nefastos.
  */
-void efeitoNefasto(Antenna* inicio, Nefasto** ini) {
+Nefasto efeitoNefasto(Antenna* inicio, Nefasto* ini) {
     Nefasto* aux;
     Antenna* current = inicio;
     Antenna* compare;
@@ -289,7 +290,7 @@ void efeitoNefasto(Antenna* inicio, Nefasto** ini) {
 					aux = CriaNefasto(nefx, current->y); // Cria o efeito nefasto.
 					*ini = insertNefasto(*ini, aux); // Insere o efeito nefasto na lista.
 					aux = CriaNefasto(nefx1, compare->y); // Cria o efeito nefasto.
-					*ini = insertNefasto(*ini, aux); // Insere o efeito nefasto na lista.
+				ini = insertNefasto(*ini, aux); // Insere o efeito nefasto na lista.
                 }
                 else if ((current->x != compare->x) && (current->y != compare->y)) {
                     // Antenas em posições diferentes
@@ -308,6 +309,8 @@ void efeitoNefasto(Antenna* inicio, Nefasto** ini) {
 			compare = compare->next; // Avança para a próxima antena.
         }
 		current = current->next; // Avança para a próxima antena.
+
+		return ini;
     }
 }
 
